@@ -965,14 +965,15 @@ window.logoutUser = async function() {
 
     document.getElementById("nickname").innerText = "Гость";
 
-    // ===== Переход в профиль =====
+    // переход в профиль
 document.getElementById("nickname").addEventListener("click", () => {
 
     if (!currentUser) return;
 
-    window.location.href = window.location.pathname + "?user=" + currentUser.uid;
+    window.location.href = "https://herrylayes.github.io/home/?user=" + currentUser.uid;
 
 });
+
 
     closeSettings();
 
@@ -1269,10 +1270,8 @@ window.confirmExit = function(save) {
 
 // ===== Назад на главную =====
 window.goHome = function() {
-
-    window.location.href = "https://herrylayes.github.io/";
-
-};  
+    window.location.href = "https://herrylayes.github.io/home/";
+};
 
 
 
@@ -1394,6 +1393,7 @@ async function checkProfilePage() {
 </div>
 </body>
 </html>
+
 
 
 
