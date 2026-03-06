@@ -589,6 +589,24 @@
     transform: scale(1.03);
 }
 
+
+
+
+
+
+        #profileBtn{
+    position:absolute;
+    top:20px;
+    right:200px;
+    font-size:22px;
+    background:#3c4b57;
+    color:white;
+    border:none;
+    border-radius:10px;
+    padding:8px 12px;
+    cursor:pointer;
+}
+
     </style>
 </head>
 <body>
@@ -666,6 +684,8 @@
 </div>
 
     <button id="exitEditorBtn" class="editor-btn">⬅ 🏠</button>
+
+    <button id="profileBtn">🎒</button>
 
 </div>
 
@@ -1328,6 +1348,17 @@ async function checkProfilePage() {
 
 
 
+       // кнопка профиля
+document.getElementById("profileBtn").addEventListener("click", () => {
+
+    if (!currentUser) return;
+
+    window.location.href =
+        "https://herrylayes.github.io/home/?user=" + currentUser.uid;
+
+});
+
+
 
 
        
@@ -1393,6 +1424,7 @@ async function checkProfilePage() {
 </div>
 </body>
 </html>
+
 
 
 
