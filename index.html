@@ -685,8 +685,6 @@
 
     <button id="exitEditorBtn" class="editor-btn">⬅ 🏠</button>
 
-    <button id="profileBtn">🎒</button>
-
 </div>
 
     <div class="create-card" onclick="openEditor()">
@@ -695,9 +693,14 @@
     </div>
 
     <div class="nickname">
-        <span id="nickname" style="cursor:pointer;"></span>
-        <button class="settings-btn" onclick="openSettings()">⚙</button>
-    </div>
+
+    <span id="nickname" style="cursor:pointer;"></span>
+
+    <button id="profileBtn" class="settings-btn">🎒</button>
+
+    <button class="settings-btn" onclick="openSettings()">⚙</button>
+
+</div>
 
 </div>
 
@@ -984,15 +987,6 @@ window.logoutUser = async function() {
     currentUser = null;
 
     document.getElementById("nickname").innerText = "Гость";
-
-    // переход в профиль
-document.getElementById("nickname").addEventListener("click", () => {
-
-    if (!currentUser) return;
-
-    window.location.href = "https://herrylayes.github.io/home/?user=" + currentUser.uid;
-
-});
 
 
     closeSettings();
@@ -1349,14 +1343,23 @@ async function checkProfilePage() {
 
 
        // кнопка профиля
-document.getElementById("profileBtn").addEventListener("click", () => {
+const profileBtn = document.getElementById("profileBtn");
 
-    if (!currentUser) return;
+if (profileBtn) {
 
-    window.location.href =
-        "https://herrylayes.github.io/home/?user=" + currentUser.uid;
+    profileBtn.addEventListener("click", () => {
 
-});
+        if (!currentUser) {
+            document.getElementById("authModal").style.display = "flex";
+            return;
+        }
+
+        window.location.href =
+            "https://herrylayes.github.io/home/?user=" + currentUser.uid;
+
+    });
+
+}
 
 
 
@@ -1424,6 +1427,7 @@ document.getElementById("profileBtn").addEventListener("click", () => {
 </div>
 </body>
 </html>
+
 
 
 
