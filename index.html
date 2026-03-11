@@ -643,14 +643,7 @@
 
     <div class="objects-list" id="objectsList"></div>
 
-    <!-- ===== Профиль ===== -->
-    <h1 id="profileTitle">Профиль</h1>
-
-    <h2 id="profileNickname" style="margin-top:20px;"></h2>
-
-    <button onclick="goHome()" style="margin-top:40px; padding:10px 20px; border:none; border-radius:10px; background:#3c4b57; color:white; cursor:pointer;">
-        ⬅ Назад
-    </button>
+    
 
 </div>
 
@@ -1264,7 +1257,7 @@ window.confirmExit = function(save) {
 
 // ===== Назад на главную =====
 function goHome(){
-    window.location.href = "https://herrylayes.github.io/home";
+location.reload();
 }
 
 
@@ -1298,7 +1291,10 @@ async function checkProfilePage() {
 
     if (!userId) return;
 
-    document.getElementById("profilePage").style.display = "block";
+    const page = document.getElementById("profilePage");
+if(page){
+page.style.display = "block";
+}
 
     const userRef = doc(db, "users", userId);
     const userSnap = await getDoc(userRef);
@@ -1504,6 +1500,7 @@ font-size:16px;
 </div>
 </body>
 </html>
+
 
 
 
