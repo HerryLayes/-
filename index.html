@@ -695,11 +695,13 @@ import {
     where,
     getDocs
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
 import { 
     getAuth,
     onAuthStateChanged,
     signInWithEmailAndPassword,
-    createUserWithEmailAndPassword
+    createUserWithEmailAndPassword,
+    signOut
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 const firebaseConfig = {
@@ -744,7 +746,7 @@ onAuthStateChanged(auth, async (user) => {
             nickname = userSnap.data().nickname;
         }
 
-        nicknameElement.innerHTML = nickname;
+        nicknameElement.innerText = nickname;
 
         // ⭐ Галочка
         if (user.uid === "qnevdFJhd1Q9FvjOp2t4GBT95pp1") {
@@ -955,7 +957,7 @@ window.saveNickname = async function() {
 // Выход из аккаунта
 window.logoutUser = async function() {
 
-    await auth.signOut();
+    await signOut(auth);
 
     currentUser = null;
 
@@ -1048,6 +1050,19 @@ scene.add(dirLight);
 
     camera.aspect = container.clientWidth / container.clientHeight;
     camera.updateProjectionMatrix();
+
+    window.addEventListener("resize", () => {
+
+    const container = document.getElementById("editor3d");
+
+    container.innerHTML = "";
+
+    camera.aspect = container.clientWidth / container.clientHeight;
+    camera.updateProjectionMatrix();
+
+    renderer.setSize(container.clientWidth, container.clientHeight);
+
+});
 
     // ===== НЕБО =====
     const skyGeometry = new THREE.SphereGeometry(500, 32, 32);
@@ -1242,15 +1257,19 @@ window.confirmExit = function(save) {
     objectsPanel.style.display = "none";
     objectsBtn.style.display = "none";
 
-    if (renderer) {
-        renderer.domElement.remove();
-    }
+    if (renderer && renderer.domElement) {
+    renderer.domElement.remove();
+}
 
     document.getElementById("editor3d").style.display = "none";
     document.getElementById("editorUI").style.display = "none";
 
     document.querySelector(".create-card").style.display = "flex";
     document.querySelector(".nickname").style.display = "flex";
+
+    document.removeEventListener("mousemove", onMouseMove);
+    document.removeEventListener("keydown", onKeyDown);
+    document.removeEventListener("keyup", onKeyUp);
 };
 
 
@@ -1512,6 +1531,7 @@ font-size:16px;
 </div>
 </body>
 </html>
+
 
 
 
