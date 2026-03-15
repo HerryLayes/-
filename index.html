@@ -589,6 +589,48 @@
     transform: scale(1.03);
 }
 
+        .profile-card{
+    background:none;
+    border:none;
+    box-shadow:none;
+    padding:0;
+}
+
+
+
+
+        .profile-screen{
+    width:100%;
+    height:100vh;
+    background:#f3f3f3;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.profile-nickname{
+    margin-top:40px;
+    font-size:40px;
+    font-weight:bold;
+}
+
+.profile-id{
+    margin-top:10px;
+    font-size:14px;
+    color:#666;
+}
+
+.back-btn{
+    margin-top:30px;
+    padding:10px 20px;
+    border:none;
+    border-radius:6px;
+    background:#3a4a5a;
+    color:white;
+    cursor:pointer;
+}
+
+        
     </style>
 </head>
 <body>
@@ -672,6 +714,16 @@
     <button class="settings-btn" onclick="openSettings()">⚙</button>
 
 </div>
+
+        <div id="profileScreen" class="profile-screen">
+
+    <div class="profile-nickname" id="profileNickname">
+        Herrybloxer
+    </div>
+
+    <div class="profile-id" id="profileId"></div>
+
+    <button class="back-btn" onclick="goBack()">← Назад</button>
 
 </div>
 
@@ -1421,9 +1473,6 @@ async function loadProfile(uid){
 
 }
 
-
-
-
        
        
 </script>
@@ -1515,6 +1564,7 @@ max-width:400px;
 <br>
 
 <button onclick="goHome()" style="
+
 padding:10px 18px;
 border:none;
 border-radius:10px;
@@ -1529,6 +1579,7 @@ font-size:16px;
 </div>
 </body>
 </html>
+
 
 
 
