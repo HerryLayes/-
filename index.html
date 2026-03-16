@@ -1447,20 +1447,22 @@ async function loadProfile(uid){
     platform.classList.remove("active");
     platform.style.display = "none";
 
-    // убираем фон страницы
+    // убираем фон
     document.body.style.background = "#f3f3f3";
 
     // показываем профиль
     profile.style.display = "block";
 
-    document.getElementById("profileNickname").innerText =
-        document.getElementById("nickname").innerText;
+    // берём текст ника правильно
+    const nickText = document.getElementById("nickname").textContent;
 
-    document.getElementById("profileUID").innerText =
-        currentUser.uid;
+    document.getElementById("profileNickname").textContent = nickText;
+    document.getElementById("profileUID").textContent = currentUser.uid;
 
 }
 
+
+       
        document.getElementById("nickname").addEventListener("click", openMyProfile);
 
 
