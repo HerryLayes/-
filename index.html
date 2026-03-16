@@ -1440,15 +1440,14 @@ async function loadProfile(uid){
 
     if(!currentUser) return;
 
-    const start = document.getElementById("startScreen");
     const platform = document.getElementById("platformScreen");
     const profile = document.getElementById("profilePage");
 
-    if(start) start.style.display = "none";
-    if(platform) platform.style.display = "none";
+    // скрываем платформу правильно
+    platform.classList.remove("active");
 
+    // показываем профиль
     profile.style.display = "block";
-    profile.style.background = "#f3f3f3";
 
     document.getElementById("profileTitle").innerText = "Мой профиль";
 
@@ -1468,10 +1467,11 @@ async function loadProfile(uid){
        function goHome(){
 
     document.getElementById("profilePage").style.display = "none";
-    document.getElementById("platformScreen").style.display = "block";
+
+    // возвращаем платформу
+    document.getElementById("platformScreen").classList.add("active");
 
 }
-
        
        
 </script>
