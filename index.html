@@ -1342,7 +1342,6 @@ function animate() {
 
 
 
-// ===== Проверка параметра ?user= =====
 async function checkProfilePage() {
 
     const params = new URLSearchParams(window.location.search);
@@ -1350,29 +1349,19 @@ async function checkProfilePage() {
 
     if (!userId) return;
 
-    const page = document.getElementById("profilePage");
-if(page){
-page.style.display = "block";
-}
+    const platform = document.getElementById("platformScreen");
+    const profile = document.getElementById("profilePage");
 
-    const userRef = doc(db, "users", userId);
-    const userSnap = await getDoc(userRef);
+    // скрываем платформу
+    platform.style.display = "none";
 
-    if (!userSnap.exists()) {
-        document.getElementById("profileTitle").innerText = "Пользователь не найден";
-        return;
-    }
+    // показываем профиль
+    profile.style.display = "block";
 
-    const nickname = userSnap.data().nickname;
+    // убираем фон
+    document.body.style.background = "#f3f3f3";
 
-    document.getElementById("profileNickname").innerText = nickname;
-
-    if (currentUser && currentUser.uid === userId) {
-        const title = document.getElementById("profileTitle");
-        if(title) title.innerText = "Мой профиль";
-    } else {
-        document.getElementById("profileTitle").innerText = "Профиль автора";
-    }
+    await loadProfile(userId);
 }
 
 
@@ -1396,23 +1385,6 @@ if (profileBtn) {
 
 }
 
-
-
-       // проверяем есть ли user в ссылке
-const params = new URLSearchParams(window.location.search);
-const profileUser = params.get("user");
-
-if (profileUser) {
-
-    // скрываем главную платформу
-    document.getElementById("platformScreen").style.display = "none";
-
-    // показываем профиль
-    document.getElementById("profilePage").style.display = "block";
-
-    loadProfile(profileUser);
-
-}
 
 async function loadProfile(uid){
 
