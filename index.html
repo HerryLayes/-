@@ -1395,8 +1395,13 @@ async function loadProfile(uid){
 
     const data = docSnap.data();
 
-    document.getElementById("profileNickname").innerText = data.nickname;
-    document.getElementById("profileUID").innerText = uid;
+    document.getElementById("profileTitle").textContent = 
+        (currentUser && currentUser.uid === uid)
+        ? "Мой профиль"
+        : "Профиль автора";
+
+    document.getElementById("profileNickname").textContent = data.nickname;
+    document.getElementById("profileUID").textContent = uid;
 
 }
 
@@ -1408,19 +1413,16 @@ async function loadProfile(uid){
     const platform = document.getElementById("platformScreen");
     const profile = document.getElementById("profilePage");
 
-    // скрываем платформу
     platform.classList.remove("active");
     platform.style.display = "none";
 
-    // убираем фон
     document.body.style.background = "#f3f3f3";
 
-    // показываем профиль
     profile.style.display = "block";
 
-    // берём текст ника правильно
     const nickText = document.getElementById("nickname").textContent;
 
+    document.getElementById("profileTitle").textContent = "Мой профиль";
     document.getElementById("profileNickname").textContent = nickText;
     document.getElementById("profileUID").textContent = currentUser.uid;
 
@@ -1514,20 +1516,31 @@ async function loadProfile(uid){
 
 <div id="profilePage">
 
-<h1 id="profileNickname" style="
+<h1 id="profileTitle" style="
 text-align:center;
-margin-top:60px;
-font-size:48px;
+margin-top:40px;
+font-size:42px;
 font-weight:bold;
 font-family:'Poppins',sans-serif;
-"></h1>
+">
+</h1>
+
+<div id="profileNickname" style="
+text-align:center;
+margin-top:15px;
+font-size:26px;
+color:#333;
+font-family:'Poppins',sans-serif;
+">
+</div>
 
 <p id="profileUID" style="
 text-align:center;
 margin-top:10px;
 color:#777;
 font-size:14px;
-"></p>
+">
+</p>
 
 <button onclick="goHome()" style="
 position:absolute;
